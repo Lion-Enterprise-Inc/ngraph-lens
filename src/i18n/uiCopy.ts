@@ -1,0 +1,196 @@
+export type LangCode =
+  | 'en' | 'zh-Hans' | 'zh-Hant' | 'ko' | 'ja'
+  | 'es' | 'fr' | 'de' | 'it' | 'pt' | 'ru' | 'th' | 'vi' | 'id';
+
+export interface LangDef {
+  code: LangCode;
+  badge: string;
+  name: string;
+  nativeName: string;
+}
+
+export const LANGUAGES: LangDef[] = [
+  { code: 'en',      badge: 'US', name: 'English',              nativeName: 'English' },
+  { code: 'ja',      badge: 'JP', name: 'Japanese',             nativeName: '日本語' },
+  { code: 'zh-Hans', badge: 'CN', name: 'Chinese (Simplified)', nativeName: '简体中文' },
+  { code: 'zh-Hant', badge: 'TW', name: 'Chinese (Traditional)',nativeName: '繁體中文' },
+  { code: 'ko',      badge: 'KR', name: 'Korean',               nativeName: '한국어' },
+  { code: 'es',      badge: 'ES', name: 'Spanish',              nativeName: 'Español' },
+  { code: 'fr',      badge: 'FR', name: 'French',               nativeName: 'Français' },
+  { code: 'de',      badge: 'DE', name: 'German',               nativeName: 'Deutsch' },
+  { code: 'it',      badge: 'IT', name: 'Italian',              nativeName: 'Italiano' },
+  { code: 'pt',      badge: 'PT', name: 'Portuguese',           nativeName: 'Português' },
+  { code: 'ru',      badge: 'RU', name: 'Russian',              nativeName: 'Русский' },
+  { code: 'th',      badge: 'TH', name: 'Thai',                 nativeName: 'ไทย' },
+  { code: 'vi',      badge: 'VN', name: 'Vietnamese',           nativeName: 'Tiếng Việt' },
+  { code: 'id',      badge: 'ID', name: 'Indonesian',           nativeName: 'Bahasa Indonesia' },
+];
+
+type UICopy = Record<string, Record<LangCode, string>>;
+
+export const UI: UICopy = {
+  snapTitle: {
+    en: 'Snap & Understand',
+    ja: '撮って、わかる',
+    'zh-Hans': '拍照即懂',
+    'zh-Hant': '拍照即懂',
+    ko: '찍으면 알 수 있어요',
+    es: 'Captura y Comprende',
+    fr: 'Prenez et Comprenez',
+    de: 'Fotografieren & Verstehen',
+    it: 'Scatta e Comprendi',
+    pt: 'Fotografe e Entenda',
+    ru: 'Снимай и Понимай',
+    th: 'ถ่ายแล้วเข้าใจ',
+    vi: 'Chụp & Hiểu ngay',
+    id: 'Foto & Pahami',
+  },
+  snapSub: {
+    en: 'Take a photo of any menu or dish',
+    ja: 'メニューや料理を撮影してください',
+    'zh-Hans': '拍摄任何菜单或菜品',
+    'zh-Hant': '拍攝任何菜單或菜品',
+    ko: '메뉴나 요리를 촬영하세요',
+    es: 'Toma una foto de cualquier menú o plato',
+    fr: 'Prenez une photo de n\'importe quel menu ou plat',
+    de: 'Fotografieren Sie ein Menü oder Gericht',
+    it: 'Scatta una foto di qualsiasi menu o piatto',
+    pt: 'Tire uma foto de qualquer cardápio ou prato',
+    ru: 'Сфотографируйте любое меню или блюдо',
+    th: 'ถ่ายรูปเมนูหรืออาหารใดก็ได้',
+    vi: 'Chụp ảnh bất kỳ menu hoặc món ăn nào',
+    id: 'Foto menu atau hidangan apa saja',
+  },
+  chatPlaceholder: {
+    en: 'Ask about Japanese food...',
+    ja: '日本の料理について聞く...',
+    'zh-Hans': '询问日本料理...',
+    'zh-Hant': '詢問日本料理...',
+    ko: '일본 음식에 대해 물어보세요...',
+    es: 'Pregunta sobre comida japonesa...',
+    fr: 'Demandez sur la cuisine japonaise...',
+    de: 'Fragen Sie nach japanischem Essen...',
+    it: 'Chiedi del cibo giapponese...',
+    pt: 'Pergunte sobre comida japonesa...',
+    ru: 'Спросите о японской еде...',
+    th: 'ถามเกี่ยวกับอาหารญี่ปุ่น...',
+    vi: 'Hỏi về ẩm thực Nhật Bản...',
+    id: 'Tanya tentang makanan Jepang...',
+  },
+  analyzing: {
+    en: 'Analyzing your photo...',
+    ja: '写真を解析中...',
+    'zh-Hans': '正在分析您的照片...',
+    'zh-Hant': '正在分析您的照片...',
+    ko: '사진을 분석하고 있습니다...',
+    es: 'Analizando tu foto...',
+    fr: 'Analyse de votre photo...',
+    de: 'Ihr Foto wird analysiert...',
+    it: 'Analisi della tua foto...',
+    pt: 'Analisando sua foto...',
+    ru: 'Анализ вашего фото...',
+    th: 'กำลังวิเคราะห์รูปภาพของคุณ...',
+    vi: 'Đang phân tích ảnh của bạn...',
+    id: 'Menganalisis foto Anda...',
+  },
+  nearLocation: {
+    en: 'Taken near',
+    ja: '付近で撮影',
+    'zh-Hans': '在附近拍摄',
+    'zh-Hant': '在附近拍攝',
+    ko: '근처에서 촬영',
+    es: 'Tomada cerca de',
+    fr: 'Prise près de',
+    de: 'Aufgenommen in der Nähe von',
+    it: 'Scattata vicino a',
+    pt: 'Tirada perto de',
+    ru: 'Снято рядом с',
+    th: 'ถ่ายใกล้',
+    vi: 'Chụp gần',
+    id: 'Diambil dekat',
+  },
+  allergens: {
+    en: 'Allergens', ja: 'アレルゲン', 'zh-Hans': '过敏原', 'zh-Hant': '過敏原',
+    ko: '알레르겐', es: 'Alérgenos', fr: 'Allergènes', de: 'Allergene',
+    it: 'Allergeni', pt: 'Alérgenos', ru: 'Аллергены', th: 'สารก่อภูมิแพ้',
+    vi: 'Dị ứng', id: 'Alergen',
+  },
+  ingredients: {
+    en: 'Ingredients', ja: '材料', 'zh-Hans': '食材', 'zh-Hant': '食材',
+    ko: '재료', es: 'Ingredientes', fr: 'Ingrédients', de: 'Zutaten',
+    it: 'Ingredienti', pt: 'Ingredientes', ru: 'Ингредиенты', th: 'ส่วนผสม',
+    vi: 'Nguyên liệu', id: 'Bahan',
+  },
+  restrictions: {
+    en: 'Dietary', ja: '食事制限', 'zh-Hans': '饮食限制', 'zh-Hant': '飲食限制',
+    ko: '식이 제한', es: 'Dietético', fr: 'Régime', de: 'Diät',
+    it: 'Dietetico', pt: 'Dietético', ru: 'Диета', th: 'ข้อจำกัดด้านอาหาร',
+    vi: 'Chế độ ăn', id: 'Diet',
+  },
+  calories: {
+    en: 'Calories', ja: 'カロリー', 'zh-Hans': '卡路里', 'zh-Hant': '卡路里',
+    ko: '칼로리', es: 'Calorías', fr: 'Calories', de: 'Kalorien',
+    it: 'Calorie', pt: 'Calorias', ru: 'Калории', th: 'แคลอรี่',
+    vi: 'Calo', id: 'Kalori',
+  },
+  confidence: {
+    en: 'Confidence', ja: '信頼度', 'zh-Hans': '置信度', 'zh-Hant': '置信度',
+    ko: '신뢰도', es: 'Confianza', fr: 'Confiance', de: 'Konfidenz',
+    it: 'Affidabilità', pt: 'Confiança', ru: 'Достоверность', th: 'ความเชื่อมั่น',
+    vi: 'Độ tin cậy', id: 'Kepercayaan',
+  },
+  verified: {
+    en: 'Verified', ja: '確認済み', 'zh-Hans': '已验证', 'zh-Hant': '已驗證',
+    ko: '검증됨', es: 'Verificado', fr: 'Vérifié', de: 'Verifiziert',
+    it: 'Verificato', pt: 'Verificado', ru: 'Проверено', th: 'ยืนยันแล้ว',
+    vi: 'Đã xác minh', id: 'Terverifikasi',
+  },
+  aiEstimate: {
+    en: 'AI Estimate', ja: 'AI推定', 'zh-Hans': 'AI估算', 'zh-Hant': 'AI估算',
+    ko: 'AI 추정', es: 'Estimación IA', fr: 'Estimation IA', de: 'KI-Schätzung',
+    it: 'Stima IA', pt: 'Estimativa IA', ru: 'Оценка ИИ', th: 'AI ประมาณการ',
+    vi: 'AI ước tính', id: 'Estimasi AI',
+  },
+  error: {
+    en: 'Something went wrong. Please try again.',
+    ja: 'エラーが発生しました。もう一度お試しください。',
+    'zh-Hans': '出了点问题，请再试一次。',
+    'zh-Hant': '出了點問題，請再試一次。',
+    ko: '문제가 발생했습니다. 다시 시도해주세요.',
+    es: 'Algo salió mal. Por favor, inténtalo de nuevo.',
+    fr: 'Une erreur est survenue. Veuillez réessayer.',
+    de: 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.',
+    it: 'Qualcosa è andato storto. Per favore riprova.',
+    pt: 'Algo deu errado. Por favor, tente novamente.',
+    ru: 'Что-то пошло не так. Пожалуйста, попробуйте снова.',
+    th: 'เกิดข้อผิดพลาด กรุณาลองอีกครั้ง',
+    vi: 'Đã xảy ra lỗi. Vui lòng thử lại.',
+    id: 'Terjadi kesalahan. Silakan coba lagi.',
+  },
+  retry: {
+    en: 'Try Again', ja: 'もう一度', 'zh-Hans': '重试', 'zh-Hant': '重試',
+    ko: '다시 시도', es: 'Reintentar', fr: 'Réessayer', de: 'Erneut versuchen',
+    it: 'Riprova', pt: 'Tentar novamente', ru: 'Повторить', th: 'ลองอีกครั้ง',
+    vi: 'Thử lại', id: 'Coba lagi',
+  },
+  selectLanguage: {
+    en: 'Select Language', ja: '言語を選択', 'zh-Hans': '选择语言', 'zh-Hant': '選擇語言',
+    ko: '언어 선택', es: 'Seleccionar idioma', fr: 'Choisir la langue', de: 'Sprache wählen',
+    it: 'Seleziona lingua', pt: 'Selecionar idioma', ru: 'Выбрать язык', th: 'เลือกภาษา',
+    vi: 'Chọn ngôn ngữ', id: 'Pilih bahasa',
+  },
+};
+
+export function t(key: string, lang: LangCode): string {
+  return UI[key]?.[lang] ?? UI[key]?.['en'] ?? key;
+}
+
+export function detectLanguage(): LangCode {
+  const nav = navigator.language || 'en';
+  const lower = nav.toLowerCase();
+  if (lower.startsWith('zh-hant') || lower === 'zh-tw' || lower === 'zh-hk') return 'zh-Hant';
+  if (lower.startsWith('zh')) return 'zh-Hans';
+  const prefix = lower.split('-')[0];
+  const match = LANGUAGES.find(l => l.code === prefix);
+  return match ? match.code : 'en';
+}
