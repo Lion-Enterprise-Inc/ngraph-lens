@@ -3,6 +3,7 @@ import { Bookmark, Check } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { t } from '../i18n/uiCopy';
 import { addLog } from '../services/localLogs';
+import { createFoodLog } from '../services/foodLogs';
 import type { QuickExplainItem } from '../services/api';
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 }
 
 export default function SaveButton({ items, image }: Props) {
-  const { language, gps } = useApp();
+  const { language, gps, isLoggedIn } = useApp();
   const [memo, setMemo] = useState('');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -28,14 +29,25 @@ export default function SaveButton({ items, image }: Props) {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await addLog({
-        image,
-        items,
-        location_lat: gps.lat,
-        location_lng: gps.lng,
-        location_label: gps.label,
-        memo: memo || undefined,
-      });
+      if (isLoggedIn) {
+        await createFoodLog({
+          image,
+          items,
+          location_lat: gps.lat,
+          location_lng: gps.lng,
+          location_label: gps.label,
+          memo: memo || undefined,
+        });
+      } else {
+        await addLog({
+          image,
+          items,
+          location_lat: gps.lat,
+          location_lng: gps.lng,
+          location_label: gps.label,
+          memo: memo || undefined,
+        });
+      }
       setSaved(true);
     } catch {
       alert(t('error', language));

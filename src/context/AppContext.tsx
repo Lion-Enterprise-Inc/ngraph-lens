@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { type LangCode, detectLanguage } from '../i18n/uiCopy';
+import { type EatUser, getStoredAuth, storeAuth, clearAuth, loginWithGoogle } from '../services/auth';
 
 interface GpsState {
   lat: number | null;
@@ -13,6 +14,10 @@ interface AppState {
   capturedImage: File | null;
   setCapturedImage: (f: File | null) => void;
   gps: GpsState;
+  user: EatUser | null;
+  isLoggedIn: boolean;
+  login: (idToken: string) => Promise<void>;
+  logout: () => void;
 }
 
 const AppContext = createContext<AppState | null>(null);
@@ -28,6 +33,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const [capturedImage, setCapturedImage] = useState<File | null>(null);
   const [gps, setGps] = useState<GpsState>({ lat: null, lng: null, label: null });
+
+  const [user, setUser] = useState<EatUser | null>(() => {
+    const stored = getStoredAuth();
+    return stored?.user ?? null;
+  });
 
   const setLanguage = (l: LangCode) => {
     setLanguageState(l);
@@ -57,8 +67,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
+  const login = async (idToken: string) => {
+    const res = await loginWithGoogle(idToken);
+    storeAuth(res.access_token, res.user);
+    setUser(res.user);
+  };
+
+  const logout = () => {
+    clearAuth();
+    setUser(null);
+  };
+
+  const isLoggedIn = user !== null;
+
   return (
-    <AppContext.Provider value={{ language, setLanguage, capturedImage, setCapturedImage, gps }}>
+    <AppContext.Provider value={{ language, setLanguage, capturedImage, setCapturedImage, gps, user, isLoggedIn, login, logout }}>
       {children}
     </AppContext.Provider>
   );

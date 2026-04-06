@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { t } from '../i18n/uiCopy';
 import { getLog, type LocalFoodLog } from '../services/localLogs';
 import NFGCard from '../components/NFGCard';
 

@@ -4,6 +4,7 @@ import CameraPage from './pages/CameraPage';
 import ResultPage from './pages/ResultPage';
 import MyPage from './pages/MyPage';
 import LogDetailPage from './pages/LogDetailPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/result" element={<ResultPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/log/:uid" element={<LogDetailPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }

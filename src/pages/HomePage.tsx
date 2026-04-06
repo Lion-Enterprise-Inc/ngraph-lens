@@ -6,6 +6,7 @@ import { t } from '../i18n/uiCopy';
 import LanguageSelect from '../components/LanguageSelect';
 import LanguageModal from '../components/LanguageModal';
 import ChatDock from '../components/ChatDock';
+import UserAvatar from '../components/UserAvatar';
 
 export default function HomePage() {
   const [langOpen, setLangOpen] = useState(false);
@@ -16,9 +17,12 @@ export default function HomePage() {
     <div className="page-container home-page">
       <div className="home-top-bar">
         <div className="home-logo">NGraph</div>
-        <button className="mypage-link-btn" onClick={() => navigate('/mypage')}>
-          <BookOpen size={20} />
-        </button>
+        <div className="home-top-actions">
+          <button className="mypage-link-btn" onClick={() => navigate('/mypage')}>
+            <BookOpen size={20} />
+          </button>
+          <UserAvatar />
+        </div>
       </div>
 
       <div className="home-main">
