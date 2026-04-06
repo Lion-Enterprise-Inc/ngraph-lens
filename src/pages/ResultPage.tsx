@@ -8,6 +8,7 @@ import NFGCard from '../components/NFGCard';
 import LanguageSelect from '../components/LanguageSelect';
 import LanguageModal from '../components/LanguageModal';
 import ChatDock from '../components/ChatDock';
+import SaveButton from '../components/SaveButton';
 
 export default function ResultPage() {
   const { language, capturedImage, gps } = useApp();
@@ -106,6 +107,10 @@ export default function ResultPage() {
             <p>{t('error', language)}</p>
             <button onClick={handleRetry}>{t('retry', language)}</button>
           </div>
+        )}
+
+        {!loading && !error && items.length > 0 && capturedImage && (
+          <SaveButton items={items} image={capturedImage} />
         )}
 
         {!loading && !error && items.map((item, i) => (

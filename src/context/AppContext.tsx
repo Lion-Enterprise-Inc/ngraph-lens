@@ -27,7 +27,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   });
 
   const [capturedImage, setCapturedImage] = useState<File | null>(null);
-
   const [gps, setGps] = useState<GpsState>({ lat: null, lng: null, label: null });
 
   const setLanguage = (l: LangCode) => {

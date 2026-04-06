@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Camera } from 'lucide-react';
+import { Camera, BookOpen } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { t } from '../i18n/uiCopy';
 import LanguageSelect from '../components/LanguageSelect';
@@ -14,7 +14,12 @@ export default function HomePage() {
 
   return (
     <div className="page-container home-page">
-      <div className="home-logo">NGraph</div>
+      <div className="home-top-bar">
+        <div className="home-logo">NGraph</div>
+        <button className="mypage-link-btn" onClick={() => navigate('/mypage')}>
+          <BookOpen size={20} />
+        </button>
+      </div>
 
       <div className="home-main">
         <div className="home-heading">
