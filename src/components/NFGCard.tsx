@@ -6,10 +6,11 @@ import type { QuickExplainItem } from '../services/api';
 interface Props {
   item: QuickExplainItem;
   index: number;
+  totalItems?: number;
 }
 
-export default function NFGCard({ item, index }: Props) {
-  const [expanded, setExpanded] = useState(false);
+export default function NFGCard({ item, index, totalItems = 1 }: Props) {
+  const [expanded, setExpanded] = useState(totalItems === 1);
   const { language } = useApp();
 
   const isJa = language === 'ja';
@@ -92,15 +93,40 @@ export default function NFGCard({ item, index }: Props) {
 
           {item.narrative && (
             <div className="nfg-detail-section">
+              {item.narrative.story && (
+                <div className="nfg-detail-story">{item.narrative.story}</div>
+              )}
               {item.narrative.texture && (
-                <span className="nfg-detail-value">{item.narrative.texture}</span>
+                <span className="nfg-detail-value">🍽 {item.narrative.texture}</span>
               )}
               {item.narrative.how_to_eat && (
-                <span className="nfg-detail-value">{item.narrative.how_to_eat}</span>
+                <span className="nfg-detail-value">📖 {item.narrative.how_to_eat}</span>
               )}
               {item.narrative.pairing && (
-                <span className="nfg-detail-value">{item.narrative.pairing}</span>
+                <span className="nfg-detail-value">🍶 {item.narrative.pairing}</span>
               )}
+            </div>
+          )}
+
+          {item.serving && (
+            <div className="nfg-detail-section">
+              <span className="nfg-detail-label">{t('serving', language) || 'Serving'}</span>
+              <span className="nfg-detail-value">
+                {[item.serving.style, item.serving.portion, item.serving.temperature].filter(Boolean).join(' / ')}
+              </span>
+            </div>
+          )}
+
+          {item.taste_values && Object.keys(item.taste_values).length > 0 && (
+            <div className="nfg-detail-section">
+              <span className="nfg-detail-label">{t('taste', language) || 'Taste'}</span>
+              <div className="nfg-chip-list">
+                {Object.entries(item.taste_values)
+                  .filter(([, v]) => v >= 6)
+                  .map(([k, v]) => (
+                    <span key={k} className="nfg-chip taste">{k} {v}/10</span>
+                  ))}
+              </div>
             </div>
           )}
 
@@ -111,11 +137,11 @@ export default function NFGCard({ item, index }: Props) {
                 <div className="nfg-confidence-bar">
                   <div
                     className="nfg-confidence-fill"
-                    style={{ width: `${Math.round(item.confidence * 100)}%` }}
+                    style={{ width: `${Math.min(Math.round(item.confidence), 100)}%` }}
                   />
                 </div>
                 <span className="nfg-confidence-text">
-                  {Math.round(item.confidence * 100)}%
+                  {Math.min(Math.round(item.confidence), 100)}%
                 </span>
               </div>
             </div>

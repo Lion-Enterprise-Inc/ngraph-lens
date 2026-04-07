@@ -114,7 +114,7 @@ export default function ResultPage() {
         )}
 
         {!loading && !error && items.map((item, i) => (
-          <NFGCard key={item.menu_uid || `${item.name_jp}-${i}`} item={item} index={i} />
+          <NFGCard key={item.menu_uid || `${item.name_jp}-${i}`} item={item} index={i} totalItems={items.length} />
         ))}
       </div>
 
